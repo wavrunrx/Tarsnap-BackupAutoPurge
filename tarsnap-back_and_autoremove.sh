@@ -3,7 +3,7 @@ set -e
 
 # 'tarsnap-back' ; An automated tarsnap backup & auto-purge script
 #
-# Copyright (c) 2011, Eric Andrew Bixler <WavRunrX@gmail.com>
+# Copyright (c) 2011, Eric Andrew Bixler
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
