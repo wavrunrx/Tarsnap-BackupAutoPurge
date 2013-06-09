@@ -57,9 +57,9 @@ echo -ne "\nBye !\n"
 exit 1
 }
 
-        echo ""
-        echo "Validating Environment..."
-	echo ""
+echo ""
+echo "Validating Environment..."
+echo ""
 sleep 1
 
 ### Check for required dependencies
@@ -76,55 +76,55 @@ for i in "$deps" ; do
 		exit 1
 	else
 		echo -n "    Dependencies: " && sleep 1 && echo "  [ OK ]"
-        fi
+	fi
 done
 
 ### Check for root privelages
 
 if [ "${USERNAME}" != "root" ] ; then
-        echo ""
-        echo "==> Checking Permissions"
-        echo -n "    Root: " && sleep 1 && echo "[ NO ]"
+	echo ""
+	echo "==> Checking Permissions"
+	echo -n "    Root: " && sleep 1 && echo "[ NO ]"
 	echo ""
 	echo ""
 	echo "-------------------------------------------------------------------"
 	echo ""
 	echo ""
 	echo "You are using an un-privileged (non root) user account."
-        echo "While it is recommended to run this as root it is not required,"
-        echo "however if you continue as '${USERNAME}' Tarsnap will only be able to"
+	echo "While it is recommended to run this as root it is not required,"
+	echo "however if you continue as '${USERNAME}' Tarsnap will only be able to"
 	echo "backup files/folders that your user has adequate permissions to read."
-        echo ""
-        echo "If you would you like to switch users and run as root, press (y)"
+	echo ""
+	echo "If you would you like to switch users and run as root, press (y)"
 	echo "You will be prompted for your password, and return to the current process."
 	echo "If would you like to continue as the current user '${USERNAME}', then press (n)"
-        read -p "==| " yn
+	read -p "==| " yn
 	###
-        if [ "$yn" != "y" ] && [ "$yn" != "n" ] && [ "$yn" != "yes" ] && [ "$yn" != "no" ] ; then
-                echo ""
-                echo "Unrecognized Input."
-                echo "Please answer (y/n)"
-                echo "Exiting."
-                echo ""
-                exit 1
-        fi
+	if [ "$yn" != "y" ] && [ "$yn" != "n" ] && [ "$yn" != "yes" ] && [ "$yn" != "no" ] ; then
+	echo ""
+	echo "Unrecognized Input."
+	echo "Please answer (y/n)"
+	echo "Exiting."
+	echo ""
+	exit 1
+	fi
 	###
 	echo ""
 	if [ "$yn" == "y" ] ; then
-                echo "==> Switching to [ root ]"
+	echo "==> Switching to [ root ]"
 		### Return the process as root
-                echo -n "    " && su -c "`which bash` $(basename "$0")"
-                exit 0
-        else
+	echo -n "    " && su -c "`which bash` $(basename "$0")"
+	exit 0
+	else
 		echo ""
-                echo "==> Continuing as current user '${USERNAME}'"
-        fi
+	echo "==> Continuing as current user '${USERNAME}'"
+	fi
 else
 	sleep 1
 	echo ""
 	echo "==> Checking Permissions"
-        echo -n "    Root: " && sleep 1 && echo "          [ OK ]"
-        sleep 2
+	echo -n "    Root: " && sleep 1 && echo "          [ OK ]"
+	sleep 2
 fi
 
 
@@ -153,7 +153,7 @@ else
 	echo ""
 	###
 	echo "How many times a day will this backup run: "
-        read -p "==| " times_a_day
+	read -p "==| " times_a_day
 	if [ $times_a_day -lt "1" ] ; then
 		echo ""
 		echo "This number must be greater then zero"
@@ -176,21 +176,21 @@ else
 	###
 	echo "Where is your tarsnap keyfile located ?"
 	read -p "==| " keyfile
-        if [ -z "$keyfile" ] ; then
-                echo "You have not entered any destination(s)"
-                echo "Exiting."
-                exit 1
+	if [ -z "$keyfile" ] ; then
+	echo "You have not entered any destination(s)"
+	echo "Exiting."
+	exit 1
 	fi
 	echo ""
 	###
 	echo "Where do you want the Tarsnap cache directory located ?"
 	echo "(The default cache directory location is /usr/local/tarsnap-cache)"
 	read -p "==| " cachedir
-        if [ -z "$cachedir" ] ; then
-                echo "You have not entered any destination(s)"
-                echo "Exiting."
-                exit 1
-        fi
+	if [ -z "$cachedir" ] ; then
+	echo "You have not entered any destination(s)"
+	echo "Exiting."
+	exit 1
+	fi
 	echo ""
 
 ###
@@ -237,15 +237,15 @@ else
 	###
 	echo "#  This is a space-separated list of directories to backup; relative to /" >> /etc/tarsnap-backup.conf
 	echo "backuptargets=\"$backuptargets\"" >> /etc/tarsnap-backup.conf
-        echo " " >> /etc/tarsnap-backup.conf
+	echo " " >> /etc/tarsnap-backup.conf
 	###
 	echo "#  This is the location of the cryptographic keys used to encrypt and sign the machine's backups you created" >> /etc/tarsnap-backup.conf
 	echo "keyfile=\"$keyfile\"" >> /etc/tarsnap-backup.conf
-        echo " " >> /etc/tarsnap-backup.conf
+	echo " " >> /etc/tarsnap-backup.conf
 	###
 	echo "#  Tarsnap cache directory. See tarsnap MAN" >> /etc/tarsnap-backup.conf
 	echo "cachedir=\"$cachedir\"" >> /etc/tarsnap-backup.conf
-        echo " " >> /etc/tarsnap-backup.conf
+	echo " " >> /etc/tarsnap-backup.conf
 
 	###
 #	echo "#  Run as 'root' by default ?" >> /etc/tarsnap-backup.conf
@@ -288,12 +288,12 @@ echo "==> Checking for an Existing Cache Directory"
 echo "--------------------------------------------"
 if [ -d /usr/local/tarsnap-cache ] ;
 then
-        echo "==> Cache Already Exists"
-        echo "==> Continuing..."
+	echo "==> Cache Already Exists"
+	echo "==> Continuing..."
 else
-        echo "==> Cache Doesn't Exist"
-        echo "==> Creating @ $cachedir"
-        mkdir /usr/local/tarsnap-cache
+	echo "==> Cache Doesn't Exist"
+	echo "==> Creating @ $cachedir"
+	mkdir /usr/local/tarsnap-cache
 fi
 
 ### Start the backup
@@ -345,24 +345,24 @@ echo ""
 echo "Continue ? (y/n)"
 read -p "==| " cont
 if [ "$cont" = "y" ] ; then
-                echo ""
-       fi
+	echo ""
+	fi
 if [ "$cont" = "n" ] ; then
 		echo ""
 		echo "User aborted process."
 		echo "Nothing was deleted"
-                echo "Exiting Now."
+	echo "Exiting Now."
 		echo ""
 		exit 1
-       fi
+	fi
 if [ "$cont" != "y" ] && [ "$yn" != "n" ] ; then
-                echo ""
-                echo "Unrecognized Input."
-                echo "Please answer (y/n) only."
-                echo "Exiting."
-                echo ""
-                exit 1
-       fi
+	echo ""
+	echo "Unrecognized Input."
+	echo "Please answer (y/n) only."
+	echo "Exiting."
+	echo ""
+	exit 1
+fi
 
 ### Purge old archives
 
